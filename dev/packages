@@ -1,0 +1,27 @@
+## General tools
+sudo
+htop
+nano
+cloc
+p7zip-rar
+graphviz
+
+## Build tools
+build-essential
+git
+git-lfs
+cmake
+
+## Debugging
+gdb
+clang-format
+clang-tidy
+cppcheck
+
+## Libraries
+libprotobuf-dev
+protobuf-compiler
+
+## Python
+python3
+python3-pip
