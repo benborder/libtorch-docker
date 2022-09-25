@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as download
+FROM ubuntu:22.04 as download
 
 # Install tools required to download and extract libtorch
 RUN apt-get update && \
@@ -13,7 +13,7 @@ ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 # Download and extract libtorch cpu
 RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cpu
 
-FROM ubuntu:20.04 as cpu
+FROM ubuntu:22.04 as cpu
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch

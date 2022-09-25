@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04 as download
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as download
 
 # Install tools required to download and extract libtorch
 RUN apt-get update && \
@@ -11,9 +11,10 @@ ARG LIBTORCH_VERSION=1.12.1
 ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 
 # Download and extract libtorch cuda
-RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu$(echo ${CUDA_VERSION} | sed 's/[^0-9]//g' | cut -c1-3)
+# RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu$(echo ${CUDA_VERSION} | sed 's/[^0-9]//g' | cut -c1-3)
+RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu116
 
-FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04 as cuda
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as cuda
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
