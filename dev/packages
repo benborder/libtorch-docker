@@ -3,7 +3,6 @@ sudo
 htop
 nano
 cloc
-p7zip-rar
 graphviz
 
 ## Build tools
