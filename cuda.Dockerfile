@@ -7,12 +7,11 @@ RUN apt-get update && \
 
 COPY dl-libtorch.bash /tmp/dl-libtorch.bash
 
-ARG LIBTORCH_VERSION=1.12.1
+ARG LIBTORCH_VERSION=1.13.0
 ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 
 # Download and extract libtorch cuda
-# RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu$(echo ${CUDA_VERSION} | sed 's/[^0-9]//g' | cut -c1-3)
-RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu116
+RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu$(echo ${CUDA_VERSION} | sed 's/[^0-9]//g' | cut -c1-3)
 
 FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as cuda
 
