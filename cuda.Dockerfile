@@ -18,6 +18,10 @@ FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as cuda
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
 
+# Setup the base environment
+COPY base /tmp/base
+RUN /tmp/base/setup.bash && rm -rf /tmp/base
+
 FROM cuda as cuda-dev
 
 # Setup the dev environment

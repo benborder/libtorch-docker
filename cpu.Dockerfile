@@ -18,6 +18,10 @@ FROM ubuntu:22.04 as cpu
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
 
+# Setup the base environment
+COPY base /tmp/base
+RUN /tmp/base/setup.bash && rm -rf /tmp/base
+
 FROM cpu as cpu-dev
 
 # Setup the dev environment

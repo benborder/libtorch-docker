@@ -1,0 +1,6 @@
+# Common
+python3
+
+# Libraries
+libprotobuf-dev
+libopencv-dev
