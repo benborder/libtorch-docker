@@ -4,3 +4,8 @@ python3
 # Libraries
 # libprotobuf-dev # currently libtorch requires 3.13 but ubuntu 22.04 provides 3.12 so its installed from source instead
 libopencv-dev
+
+# Graphics
+x11-utils
+mesa-utils
+libglfw3

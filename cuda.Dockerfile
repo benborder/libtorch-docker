@@ -30,6 +30,9 @@ FROM cuda as cuda-dev
 COPY dev /tmp/dev
 RUN /tmp/dev/setup-dev.bash && rm -rf /tmp/dev
 
+# nvidia-container-runtime
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics,display
+
 # Create a user 'dev'
 RUN useradd --create-home --user-group --groups sudo --shell /bin/bash "dev" \
     && mkdir -p /etc/sudoers.d && printf '%s ALL=(ALL:ALL) NOPASSWD: ALL\n' "dev" | tee /etc/sudoers.d/nopasswd;
