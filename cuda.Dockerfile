@@ -24,6 +24,9 @@ RUN ldconfig /usr/local/libtorch/lib/ && ldconfig -p | grep /usr/local/libtorch 
 COPY base /tmp/base
 RUN /tmp/base/setup.bash && rm -rf /tmp/base
 
+# Add the EGL settings for nvidia
+COPY 10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+
 FROM cuda as cuda-dev
 
 # Setup the dev environment
