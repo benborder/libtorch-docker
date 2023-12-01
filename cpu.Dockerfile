@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 COPY dl-libtorch.bash /tmp/dl-libtorch.bash
 
-ARG LIBTORCH_VERSION=2.0.1
+ARG LIBTORCH_VERSION=2.1.1
 ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 
 # Download and extract libtorch cpu
