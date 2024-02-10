@@ -17,6 +17,8 @@ FROM ubuntu:22.04 as cpu
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
+# Make libs discoverable for runtime linking
+RUN ldconfig /usr/local/libtorch/lib/
 
 # Setup the base environment
 COPY base /tmp/base
