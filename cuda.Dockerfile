@@ -18,7 +18,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as cuda
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
 # Make libs discoverable for runtime linking
-RUN ldconfig /usr/local/libtorch/lib/
+RUN ldconfig /usr/local/libtorch/lib/ && ldconfig -p | grep /usr/local/libtorch || { echo "Error: libtorch not found in ldconfig paths"; exit 1; }
 
 # Setup the base environment
 COPY base /tmp/base
@@ -33,3 +33,6 @@ RUN /tmp/dev/setup-dev.bash && rm -rf /tmp/dev
 # Create a user 'dev'
 RUN useradd --create-home --user-group --groups sudo --shell /bin/bash "dev" \
     && mkdir -p /etc/sudoers.d && printf '%s ALL=(ALL:ALL) NOPASSWD: ALL\n' "dev" | tee /etc/sudoers.d/nopasswd;
+
+# Make libs discoverable for runtime linking (For some reason its not carried over from the base image)
+RUN ldconfig /usr/local/libtorch/lib/ && ldconfig -p | grep /usr/local/libtorch || { echo "Error: libtorch not found in ldconfig paths"; exit 1; }
