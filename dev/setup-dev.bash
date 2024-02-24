@@ -19,5 +19,6 @@ rm -rf /var/lib/apt/lists/*
 # Install gperf
 git clone https://github.com/gperftools/gperftools \
 	&& cd gperftools && mkdir build && cd build \
-	&& cmake .. && make && make install \
+	&& cmake -DBUILD_TESTING=OFF .. \
+	&& make && make install \
 	&& cd ../.. && rm -rf gperftools
