@@ -17,8 +17,9 @@ apt-get clean
 rm -rf /var/lib/apt/lists/*
 
 # Install gperf
-git clone https://github.com/gperftools/gperftools \
-	&& cd gperftools && mkdir build && cd build \
-	&& cmake -DBUILD_TESTING=OFF .. \
-	&& make && make install \
-	&& cd ../.. && rm -rf gperftools
+git clone --depth 1 --branch gperftools-2.15 https://github.com/gperftools/gperftools \
+	&& cd gperftools \
+	&& cmake -DBUILD_TESTING=OFF -B build \
+	&& cmake --build build --parallel \
+	&& cmake --install build \
+	&& cd .. && rm -rf gperftools
