@@ -9,3 +9,4 @@ libopencv-dev
 x11-utils
 mesa-utils
 libglfw3
+xorg-dev
