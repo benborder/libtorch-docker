@@ -10,3 +10,5 @@ x11-utils
 mesa-utils
 libglfw3
 xorg-dev
+libgles1
+libgles2
