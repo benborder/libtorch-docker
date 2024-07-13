@@ -2,21 +2,28 @@
 sudo
 htop
 nano
-cloc
+zip
+tar
 graphviz
 
 ## Build tools
 build-essential
-git
-git-lfs
+pkg-config
 cmake
+ninja-build
 protobuf-compiler
 
-## Debugging
-gdb
+## Dev tools
+git
+git-lfs
+cloc
 clang-format
 clang-tidy
 cppcheck
+
+## Debugging tools
+gdb
+valgrind
 
 ## Python
 python3-dev
