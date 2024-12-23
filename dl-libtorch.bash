@@ -13,6 +13,7 @@ unzip /tmp/libtorch-cxx11-abi-shared-with-deps-${version}+${compute_type}.zip -d
 rm /tmp/libtorch/lib/libproto*
 
 # If using cuda, cudnn is already included in base image, so remove it from libtorch directory
+# Unless the image has the same version of cuda this will cause linker issues at runtime
 if [[ "${compute_type:0:2}" == "cu" ]]; then
     rm /tmp/libtorch/lib/libcudnn*
 fi

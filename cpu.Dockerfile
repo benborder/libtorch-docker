@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 AS download
+FROM ubuntu:24.04 AS download
 
 # Install tools required to download and extract libtorch
 RUN apt-get update && \
@@ -7,13 +7,13 @@ RUN apt-get update && \
 
 COPY dl-libtorch.bash /tmp/dl-libtorch.bash
 
-ARG LIBTORCH_VERSION=2.1.1
+ARG LIBTORCH_VERSION=2.7.1
 ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 
 # Download and extract libtorch cpu
 RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cpu
 
-FROM ubuntu:22.04 AS cpu-base
+FROM ubuntu:24.04 AS cpu-base
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
@@ -35,6 +35,9 @@ FROM cpu-build AS cpu-dev
 # Setup the dev environment
 COPY dev /tmp/dev
 RUN /tmp/dev/setup-dev.bash && rm -rf /tmp/dev
+
+# Remove the default 'ubuntu' user to free up UID 1000
+RUN userdel -r ubuntu || true
 
 # Create a user 'dev'
 RUN useradd --create-home --user-group --groups sudo --shell /bin/bash "dev" \

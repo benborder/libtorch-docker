@@ -1,9 +1,8 @@
 ## Build tools
 build-essential
 pkg-config
-# Using an older version of cmake to support the older version of protobuf that pytorch requires
-cmake=3.31.8-0kitware1ubuntu22.04.1
-cmake-data=3.31.8-0kitware1ubuntu22.04.1
+cmake
+cmake-data
 ninja-build
 protobuf-compiler
 
