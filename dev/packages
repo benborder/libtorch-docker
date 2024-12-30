@@ -4,6 +4,7 @@ htop
 nano
 zip
 tar
+jq
 graphviz
 
 ## Build tools
@@ -33,6 +34,3 @@ python3-pip
 libglfw3-dev
 libgles-dev
 libglvnd-dev
-
-# CI tools
-nodejs
