@@ -13,7 +13,7 @@ ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 # Download and extract libtorch cpu
 RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cpu
 
-FROM ubuntu:22.04 AS cpu
+FROM ubuntu:22.04 AS cpu-base
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
@@ -24,7 +24,13 @@ RUN ldconfig /usr/local/libtorch/lib/ && ldconfig -p | grep /usr/local/libtorch 
 COPY base /tmp/base
 RUN /tmp/base/setup.bash && rm -rf /tmp/base
 
-FROM cpu AS cpu-dev
+FROM cpu-base AS cpu-build
+
+# Setup the build environment
+COPY build /tmp/build
+RUN /tmp/build/setup-build.bash && rm -rf /tmp/build
+
+FROM cpu-build AS cpu-dev
 
 # Setup the dev environment
 COPY dev /tmp/dev

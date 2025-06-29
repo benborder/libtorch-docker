@@ -13,7 +13,7 @@ ENV LIBTORCH_VERSION=${LIBTORCH_VERSION}
 # Download and extract libtorch cuda
 RUN /tmp/dl-libtorch.bash ${LIBTORCH_VERSION} cu$(echo ${CUDA_VERSION} | sed 's/[^0-9]//g' | cut -c1-3)
 
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 AS cuda
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 AS cuda-base
 
 # Copy libtorch to final image
 COPY --from=download /tmp/libtorch /usr/local/libtorch
@@ -27,7 +27,13 @@ RUN /tmp/base/setup.bash && rm -rf /tmp/base
 # Add the EGL settings for nvidia
 COPY 10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
-FROM cuda AS cuda-dev
+FROM cuda-base AS cuda-build
+
+# Setup the build environment
+COPY build /tmp/build
+RUN /tmp/build/setup-build.bash && rm -rf /tmp/build
+
+FROM cuda-build AS cuda-dev
 
 # Setup the dev environment
 COPY dev /tmp/dev

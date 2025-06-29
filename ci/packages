@@ -1,0 +1,8 @@
+## General tools
+jq
+
+## Dev tools
+cloc
+clang-format
+clang-tidy
+cppcheck

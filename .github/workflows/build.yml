@@ -22,13 +22,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push cpu-dev
-        uses: docker/build-push-action@v5
-        with:
-          file: cpu.Dockerfile
-          push: true
-          tags: ${{ secrets.REGISTRY }}/${{ github.repository }}:cpu-dev
-
       - name: Build and push ci
         uses: docker/build-push-action@v5
         with:

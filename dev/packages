@@ -1,26 +1,10 @@
 ## General tools
-sudo
 htop
 nano
 zip
 tar
 jq
 graphviz
-
-## Build tools
-build-essential
-pkg-config
-cmake
-ninja-build
-protobuf-compiler
-
-## Dev tools
-git
-git-lfs
-cloc
-clang-format
-clang-tidy
-cppcheck
 
 ## Debugging tools
 gdb
