@@ -1,9 +1,10 @@
 ## General tools
+sudo
 htop
 nano
 zip
+unzip
 tar
-jq
 graphviz
 
 ## Debugging tools

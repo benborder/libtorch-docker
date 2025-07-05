@@ -2,6 +2,12 @@
 
 set -e
 
+packages=$(cat /tmp/ci/packages | sed '/#/d')
+echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+apt-get update && ACCEPT_EULA=Y apt-get install --assume-yes --no-install-recommends --quiet=2 $packages
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+
 NODE_VERSION="18"
 
 VER=$(curl https://nodejs.org/download/release/index.json | jq "[.[] | select(.version|test(\"^v${NODE_VERSION}\"))][0].version" -r)

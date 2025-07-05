@@ -34,7 +34,7 @@ FROM cpu-build AS cpu-ci
 
 # Setup the ci environment
 COPY ci /tmp/ci
-RUN sudo /tmp/ci/setup-ci.bash && rm -rf /tmp/ci
+RUN /tmp/ci/setup-ci.bash && rm -rf /tmp/ci
 
 # Create a user 'dev'
 RUN useradd --create-home --user-group --groups sudo --shell /bin/bash "dev" \

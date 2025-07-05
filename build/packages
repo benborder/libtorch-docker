@@ -1,9 +1,3 @@
-## General tools
-sudo
-zip
-tar
-jq
-
 ## Build tools
 build-essential
 pkg-config

@@ -4,7 +4,7 @@ set -e
 
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 apt-get update && apt-get install --assume-yes --no-install-recommends --quiet=2 \
-	lsb-release unzip apt-transport-https curl wget gnupg2 ca-certificates locales software-properties-common openssh-client
+	lsb-release apt-transport-https curl wget gnupg2 ca-certificates locales software-properties-common openssh-client
 
 # Use the latest cmake packages from kitware instead of ubuntu/debian
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
