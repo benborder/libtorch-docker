@@ -9,3 +9,7 @@ protobuf-compiler
 ## Dev tools
 git
 git-lfs
+cloc
+clang-format
+clang-tidy
+cppcheck
