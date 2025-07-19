@@ -12,4 +12,5 @@ git-lfs
 cloc
 clang-format
 clang-tidy
+clangd
 cppcheck
